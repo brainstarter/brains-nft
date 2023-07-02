@@ -59,6 +59,14 @@ contract BrainsNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Owna
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 
+    function enableExchange(address exchangeTokenAddress) public onlyOwner {
+        _enableExchange(exchangeTokenAddress);
+    }
+
+    function disableExchange() public onlyOwner {
+        _disableExchange();
+    }
+
     // The following functions are overrides required by Solidity.
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {

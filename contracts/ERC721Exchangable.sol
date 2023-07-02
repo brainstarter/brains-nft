@@ -43,7 +43,7 @@ abstract contract ERC721Exchangable is IERC4906, ERC721, IERC721Exchangable {
         ERC20 token = ERC20(_exchangeTokenAddress);
         require(token.balanceOf(address(this)) >= tokenAmount, "ERC721Exchangable: insufficient balance for exchange");
         _burn(tokenId);
-        token.transferFrom(address(this), _msgSender(), tokenAmount);
+        token.transfer(_msgSender(), tokenAmount);
         emit TokensExchanged(tokenId);
     }
 
