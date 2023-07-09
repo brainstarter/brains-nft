@@ -39,6 +39,17 @@ contract BrainsNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Owna
         return tokenId;
     }
 
+    function safeBatchMint(address[] memory to, string[] memory uri, uint256[] memory tokenValue) public onlyOwner returns (uint256[] memory tokenIds) {
+        require(to.length == uri.length && uri.length == tokenValue.length, "BrainsNFT: array length mismatch");
+        require(to.length != 0, "BrainsNFT: array length mismatch");
+        tokenIds = new uint256[](to.length);
+        for (uint256 i = 0; i < to.length; i++) {
+            uint256 tokenId = safeMint(to[i], uri[i], tokenValue[i]);
+            tokenIds[i] = tokenId;
+        }
+        return tokenIds;
+    }
+
     function setTokenValue(uint256 tokenId, uint256 _tokenValue) public onlyOwner {
         _setTokenValue(tokenId, _tokenValue);
     }

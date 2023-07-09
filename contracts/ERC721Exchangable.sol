@@ -27,6 +27,7 @@ abstract contract ERC721Exchangable is IERC4906, ERC721, IERC721Exchangable {
     }
 
     function _enableExchange(address exchangeTokenAddress) internal virtual {
+        require(exchangeTokenAddress != address(0), "ERC721Exchangable: exchange token address is the zero address");
         _exchangeTokenAddress = exchangeTokenAddress;
         emit ExchangeEnabled();
     }

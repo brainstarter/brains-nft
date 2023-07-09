@@ -3,6 +3,12 @@
   "description": "Brainstarter.io $BRAINS NFT Package",
   "version": "1.0.0",
   "author": "Brainstarter.io | Dmytro Morozov",
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "coverage": "hardhat coverage --testfiles 'test/*.ts'"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "hardhat": "^2.16.1",
