@@ -18,7 +18,7 @@ contract BrainsNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Owna
 
     string private _baseTokenURI;
 
-    constructor() ERC721("$BRAINSNFT", "BRNFT") {
+    constructor() ERC721("$NEURON", "NEURON") {
         _baseTokenURI = "";
     }
 
