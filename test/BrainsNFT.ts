@@ -31,13 +31,13 @@ describe("BrainsNFT", function () {
     it("Should set the right name", async function () {
       const { contract } = await loadFixture(deploy);
 
-      expect(await contract.name()).to.equal("$BRAINSNFT");
+      expect(await contract.name()).to.equal("$NEURON");
     });
 
     it("Should set the right symbol", async function () {
       const { contract } = await loadFixture(deploy);
 
-      expect(await contract.symbol()).to.equal("BRNFT");
+      expect(await contract.symbol()).to.equal("NEURON");
     });
   });
 
