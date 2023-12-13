@@ -33,7 +33,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@thirdweb-dev/contracts": "^3.10.1",
+    "@thirdweb-dev/contracts": "3.10.4",
     "keccak": "^3.0.4",
     "merkletreejs": "^0.3.10"
   }

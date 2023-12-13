@@ -3,14 +3,12 @@ import { ethers } from "hardhat";
 async function main() {
   const [owner] = await ethers.getSigners();
 
-  const ERC20Mock = await ethers.getContractFactory("ERC20Mock");
-  const mock = await ERC20Mock.deploy('USDT', 'USDT');
+  const MetaUSDT = await ethers.getContractFactory("MetaUSDT");
+  const mock = await MetaUSDT.deploy("MetaTest", "MTT");
 
   await mock.deployed();
 
-  await mock.mint(owner.address, "100000000000");
-
-  console.log(`ERC20Mock deployed to: ${mock.address}`);
+  console.log(`MetaUSDT deployed to: ${mock.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
