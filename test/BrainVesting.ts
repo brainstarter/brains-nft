@@ -133,18 +133,23 @@ describe("BrainVesting", () => {
         const VESTING_DURATION = 31536000;
 
         const deployVesting = async () => {
-            const { nftContract, vestingContract, otherAccount, tokenId, erc20Contract } = await loadFixture(deploy);
+            const { nftContract, vestingContract, otherAccount, tokenId, erc20Contract, owner } = await loadFixture(deploy);
             await erc20Contract.mint(vestingContract.address, ethers.utils.parseUnits("100", 18));
             await nftContract.connect(otherAccount).setApprovalForAll(vestingContract.address, true);
             await vestingContract.connect(otherAccount).exchange(tokenId);
 
             const vestings = await vestingContract.vestings(otherAccount.address);
             const vestingAddress = vestings[0];
-            const VestingWallet = await ethers.getContractFactory("VestingWallet");
+            const VestingWallet = await ethers.getContractFactory("BrainVestingWallet");
             const vestingWallet = VestingWallet.attach(vestingAddress);
 
-            return { nftContract, vestingContract, otherAccount, tokenId, erc20Contract, vestingWallet };
+            return { nftContract, vestingContract, otherAccount, tokenId, erc20Contract, vestingWallet, owner };
         };
+
+        it("Should create vesting wallet with proper owner", async () => {
+            const { vestingWallet, owner } = await loadFixture(deployVesting);
+            expect(await vestingWallet.owner()).to.equal(owner.address);
+        });
 
         it("Should create vesting wallet with proper beneficiary", async () => {
             const { otherAccount, vestingWallet } = await loadFixture(deployVesting);

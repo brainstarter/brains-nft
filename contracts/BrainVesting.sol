@@ -11,8 +11,8 @@ contract BrainVesting is Ownable {
     mapping(address => BrainVestingWallet[]) private _wallets;
     BrainsNFT private _nft;
     ERC20 private _token;
-    uint64 constant public COMMON_YEAR_SECONDS = 31536000;
-    uint64 constant public VESTING_START_DATE = 1718726400;
+    uint64 constant public COMMON_YEAR_SECONDS = 49852800;
+    uint64 constant public VESTING_START_DATE = 1715817600;
 
     constructor(address nft, address token) Ownable() {
         _nft = BrainsNFT(nft);
@@ -34,7 +34,7 @@ contract BrainVesting is Ownable {
         
         _token.transfer(nftOwner, ownerReward);
 
-        BrainVestingWallet wallet = new BrainVestingWallet(_msgSender(), VESTING_START_DATE, COMMON_YEAR_SECONDS);
+        BrainVestingWallet wallet = new BrainVestingWallet(_msgSender(), VESTING_START_DATE, COMMON_YEAR_SECONDS, owner());
         _token.transfer(address(wallet), vestingAmount);
         _wallets[_msgSender()].push(wallet);
     }
