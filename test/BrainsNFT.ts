@@ -1,5 +1,4 @@
 import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
-import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { BigNumber } from "ethers";
@@ -12,7 +11,7 @@ describe("BrainsNFT", function () {
     const contract = await BrainsNFT.deploy();
 
     const ERC20Mock = await ethers.getContractFactory("ERC20Mock");
-    const erc20Contract = await ERC20Mock.deploy();
+    const erc20Contract = await ERC20Mock.deploy('BRAINS', 'BRAINS');
 
     const tx = await contract.safeMint(owner.address, "reward.png", 12);
     const receipt = await tx.wait();
@@ -581,7 +580,7 @@ describe("BrainsNFT", function () {
       expect(await contract.exchangeToken()).to.equal(erc20Contract.address);
 
       const ERC20Mock = await ethers.getContractFactory("ERC20Mock");
-      const erc20Contract2 = await ERC20Mock.deploy();
+      const erc20Contract2 = await ERC20Mock.deploy('BRAINS', 'BRAINS');
 
       await contract.enableExchange(erc20Contract2.address);
       expect(await contract.exchangeToken()).to.equal(erc20Contract2.address);

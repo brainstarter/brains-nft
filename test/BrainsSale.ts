@@ -27,7 +27,7 @@ describe("BrainsSale", function () {
       const contract = await BrainsSale.deploy(owner.address, "$BRAINS_SALES", "$BS", owner.address);
 
       const ERC20Mock = await ethers.getContractFactory("ERC20Mock");
-      const usdc = await ERC20Mock.deploy();
+      const usdc = await ERC20Mock.deploy('BRAINS', 'BRAINS');
       await usdc.mint(owner.address, ethers.utils.parseEther("1000000000000000000000000000"));
 
       const timestamp = await time.latest();
