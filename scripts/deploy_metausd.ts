@@ -4,7 +4,7 @@ async function main() {
   const [owner] = await ethers.getSigners();
 
   const MetaUSDT = await ethers.getContractFactory("MetaUSDT");
-  const mock = await MetaUSDT.deploy("MetaTest", "MTT");
+  const mock = await MetaUSDT.deploy("MetaUSD", "BMU");
 
   await mock.deployed();
 
